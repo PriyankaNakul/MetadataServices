@@ -27,7 +27,6 @@ app.get('/content', (req, res)=> {
 app.get('/content/:content_id', async(req, res)=>{
     //Authentication
     const autherization = req.headers['authorization'];
-    console.log(autherization);
     if(!autherization){
         return res.status(403).send('User autherization required.');
     }
@@ -52,7 +51,7 @@ app.get('/content/:content_id', async(req, res)=>{
     }
 
     const content = contents.find(c => c.content_id === parseInt(req.params.content_id));
-    if(!content || parseInt(content.content_id) === parseInt(0000, 8)) {
+    if(!content || parseInt(content.content_id) === "0000") {
         res.status(404).send('The content with given id was not found');
         return;
     }
